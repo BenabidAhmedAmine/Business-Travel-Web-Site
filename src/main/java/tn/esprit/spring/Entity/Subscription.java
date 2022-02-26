@@ -27,5 +27,5 @@ public class Subscription implements Serializable{
 	private String title;
 	
  @OneToOne(mappedBy="subscription")
-	private Employee employee;
+ private User user;
 }

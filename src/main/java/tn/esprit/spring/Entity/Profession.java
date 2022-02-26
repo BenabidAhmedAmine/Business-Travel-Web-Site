@@ -22,11 +22,11 @@ public class Profession implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int professionId;
+	private long professionId;
 	private String name;
 	
 	
 	@ManyToOne
-	private Employee employee;
+	private User user;
 
 }

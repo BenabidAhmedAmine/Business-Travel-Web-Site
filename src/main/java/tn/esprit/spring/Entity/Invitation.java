@@ -30,5 +30,5 @@ public class Invitation implements Serializable {
 	private Status status;
 	
 	@ManyToOne
-	private Company company;
+	private User user;
 }

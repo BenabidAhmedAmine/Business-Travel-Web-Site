@@ -21,11 +21,11 @@ import lombok.Setter;
 public class DomainActivity implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int domainId;
+	private long domainId;
 	private String name;
 	
 	
 	@ManyToOne
-	private Company company;
+	private User user;
 
 }

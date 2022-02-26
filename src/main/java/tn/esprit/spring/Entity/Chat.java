@@ -33,7 +33,7 @@ public class Chat implements Serializable {
 	Date sendingdate;
 	
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	private Set<Employee> employees;
+	@ManyToMany(mappedBy="chats",cascade = CascadeType.ALL)
+	private Set<User> users;
 
 }

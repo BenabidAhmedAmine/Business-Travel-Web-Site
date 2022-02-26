@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.Comment;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -43,5 +43,5 @@ public class Publication implements Serializable  {
 	private Set<Comment> comments;
     
 	@ManyToOne
-	private Employee employee;
+	private User user;
 }

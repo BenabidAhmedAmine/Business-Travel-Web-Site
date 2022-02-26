@@ -29,6 +29,6 @@ public class FeedBack implements Serializable {
 	private String Rainting;
 	
 	@ManyToOne
-	private Employee employee;
+	private User user;
 	
 }

@@ -38,5 +38,5 @@ public class Complaints implements Serializable {
 
 
 	@ManyToOne
-	private Employee employee;
+	private User user;
 }

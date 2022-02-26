@@ -37,5 +37,5 @@ public class Travel implements Serializable{
 
 	
 	@ManyToOne
-	private Company company;
+	private User user;
 }

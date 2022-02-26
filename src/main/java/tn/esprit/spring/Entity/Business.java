@@ -27,11 +27,10 @@ public class Business implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int businessId;
 	private String domain;
-	@Temporal(TemporalType.DATE)
 	private String period;
 	
 	
 	@ManyToOne
-	private Company company;
+	private User user;
 
 }

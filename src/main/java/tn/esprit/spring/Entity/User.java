@@ -17,6 +17,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -59,14 +60,15 @@ public class User implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL , mappedBy="user")
 	private Set<Complaints> complaints;
 	
-	@OneToMany(cascade = CascadeType.ALL , mappedBy="user")
-	private Set<Publication> Publications;
+	@OneToMany(mappedBy = "user")
+	private Set<Publication> publications;
+	//@ManyToMany
+	//@JsonIgnore
+	//private Set<Publication> publications;
 	
-	 @OneToOne
+	@OneToOne
 	private Subscription subscription;
-	 
-	 @ManyToMany(cascade = CascadeType.ALL)
-	private Set<Chat> chats;
 	
-
+	//@OneToMany(cascade = CascadeType.ALL)
+	//private Set<Chat> Chats;
 }

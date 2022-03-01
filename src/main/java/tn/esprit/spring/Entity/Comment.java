@@ -11,29 +11,30 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Comment implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int commId;
-	private String username; 
+	private int idComm;
 	private String contents;
-	@Temporal(TemporalType.DATE)
-	Date dateComm;
-
-	private int like ; 
-	private int dislike ;
+	private Date dateComm = new Date(System.currentTimeMillis());
 	
 	@ManyToOne
+	@JsonIgnore
 	private Publication publication;
 }

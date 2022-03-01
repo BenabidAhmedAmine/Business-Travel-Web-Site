@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -19,11 +21,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
-public class Chat implements Serializable {
+@AllArgsConstructor
+@NoArgsConstructor
+
+public class Chat  implements Serializable{
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int chatId;
@@ -32,8 +36,12 @@ public class Chat implements Serializable {
 	@Temporal(TemporalType.DATE)
 	Date sendingdate;
 	
+	@ManyToOne(cascade = CascadeType.ALL)
+	User users;
 	
-	@ManyToMany(mappedBy="chats",cascade = CascadeType.ALL)
-	private Set<User> users;
+	@OneToOne
+	private User user;
+	//@ManyToMany(mappedBy="chats")
+	//private Set<Employee> employees;
 
 }

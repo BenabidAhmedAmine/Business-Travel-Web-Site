@@ -13,19 +13,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Subscription implements Serializable{
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int subscriptionId;
-	private String employeeId; 
+	
 	private String title;
 	
- @OneToOne(mappedBy="subscription")
- private User user;
+	
+	@OneToOne(mappedBy="subscription")
+	private User user;
+ //@OneToOne(mappedBy="subscription")
+	//private Employee employee;
 }

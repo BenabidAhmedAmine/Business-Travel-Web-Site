@@ -1,4 +1,4 @@
-package tn.esprit.spring.controller;
+package tn.esprit.spring.Controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +18,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import tn.esprit.spring.Service.PublicationServiceImpl;
 
-import tn.esprit.spring.entities.Publication;
+import tn.esprit.spring.Entity.Publication;
 
 
 

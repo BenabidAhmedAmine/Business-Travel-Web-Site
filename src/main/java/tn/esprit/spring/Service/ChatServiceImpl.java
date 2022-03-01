@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import tn.esprit.spring.repositories.ChatRepository;
+import tn.esprit.spring.Repository.ChatRepository;
 
-import tn.esprit.spring.entities.Chat;
+import tn.esprit.spring.Entity.Chat;
 
 @Service
 public class ChatServiceImpl implements IChatService {

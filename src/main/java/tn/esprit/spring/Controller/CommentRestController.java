@@ -1,4 +1,4 @@
-package tn.esprit.spring.controller;
+package tn.esprit.spring.Controller;
 
 import java.util.List;
 
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import tn.esprit.spring.Service.CommentServiceImpl;
-import tn.esprit.spring.entities.Comment;
-import tn.esprit.spring.entities.Publication;
+import tn.esprit.spring.Entity.Comment;
+import tn.esprit.spring.Entity.Publication;
 import tn.spring.APIResponse;
 
 

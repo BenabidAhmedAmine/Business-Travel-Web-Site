@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
-import tn.esprit.spring.repositories.PublicationRepository;
+import tn.esprit.spring.Repository.PublicationRepository;
 
-import tn.esprit.spring.entities.Publication;
+import tn.esprit.spring.Entity.Publication;
 
 @Service
 public class PublicationServiceImpl implements IPublicationService {

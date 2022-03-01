@@ -1,4 +1,4 @@
-package tn.esprit.spring.controller;
+package tn.esprit.spring.Controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.ApiOperation;
 import tn.esprit.spring.Service.SubscriptionServiceImpl;
 
-import tn.esprit.spring.entities.Subscription;
+import tn.esprit.spring.Entity.Subscription;
 
 
 

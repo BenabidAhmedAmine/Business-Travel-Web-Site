@@ -7,10 +7,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import tn.esprit.spring.repositories.CommentRepository;
+import tn.esprit.spring.Repository.CommentRepository;
 
-import tn.esprit.spring.entities.Comment;
-import tn.esprit.spring.entities.Publication;
+import tn.esprit.spring.Entity.Comment;
+import tn.esprit.spring.Entity.Publication;
 @Service
 public class CommentServiceImpl implements ICommentService{
 	@Autowired

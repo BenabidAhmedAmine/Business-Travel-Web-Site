@@ -1,4 +1,4 @@
-package tn.esprit.spring.controller;
+package tn.esprit.spring.Controller;
 
 import com.javamaster.storage.UserStorage;
 import org.springframework.http.ResponseEntity;

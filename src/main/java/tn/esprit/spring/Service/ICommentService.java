@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
-import tn.esprit.spring.entities.Comment;
+import tn.esprit.spring.Entity.Comment;
 
 
 public interface ICommentService {

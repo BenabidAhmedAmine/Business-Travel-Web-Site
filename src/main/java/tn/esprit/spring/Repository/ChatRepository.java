@@ -1,8 +1,8 @@
-package tn.esprit.spring.repositories;
+package tn.esprit.spring.Repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import tn.esprit.spring.entities.Chat;
+import tn.esprit.spring.Entity.Chat;
 
 
 

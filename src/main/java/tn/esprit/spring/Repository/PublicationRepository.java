@@ -1,4 +1,4 @@
-package tn.esprit.spring.repositories;
+package tn.esprit.spring.Repository;
 
 
 
@@ -12,7 +12,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 
-import tn.esprit.spring.entities.Publication;
+import tn.esprit.spring.Entity.Publication;
 
 @Repository
 public interface PublicationRepository extends CrudRepository<Publication, Integer> {

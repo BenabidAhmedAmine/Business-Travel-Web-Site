@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import tn.esprit.spring.repositories.SubscriptionRepository;
-import tn.esprit.spring.entities.Comment;
-import tn.esprit.spring.entities.Subscription;
+import tn.esprit.spring.Repository.SubscriptionRepository;
+import tn.esprit.spring.Entity.Comment;
+import tn.esprit.spring.Entity.Subscription;
 
 @Service
 public class SubscriptionServiceImpl implements ISubscriptionService {

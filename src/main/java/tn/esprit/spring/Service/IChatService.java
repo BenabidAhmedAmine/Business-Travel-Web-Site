@@ -2,7 +2,7 @@ package tn.esprit.spring.Service;
 
 import java.util.List;
 
-import tn.esprit.spring.entities.Chat;
+import tn.esprit.spring.Entity.Chat;
 
 
 public interface IChatService {

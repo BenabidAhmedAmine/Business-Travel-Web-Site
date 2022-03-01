@@ -1,4 +1,4 @@
-package tn.esprit.spring.controller;
+package tn.esprit.spring.Controller;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ import com.javamaster.storage.UserStorage;
 
 import io.swagger.annotations.ApiOperation;
 import tn.esprit.spring.Service.ChatServiceImpl;
-import tn.esprit.spring.entities.Chat;
+import tn.esprit.spring.Entity.Chat;
 
 
 

@@ -1,7 +1,7 @@
-package tn.esprit.spring.repositories;
+package tn.esprit.spring.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import tn.esprit.spring.entities.Comment;
+import tn.esprit.spring.Entity.Comment;
 
 
 

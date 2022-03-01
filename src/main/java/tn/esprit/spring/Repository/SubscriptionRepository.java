@@ -1,11 +1,11 @@
-package tn.esprit.spring.repositories;
+package tn.esprit.spring.Repository;
 
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 
 
-import tn.esprit.spring.entities.Subscription;
+import tn.esprit.spring.Entity.Subscription;
 
 public interface SubscriptionRepository extends CrudRepository<Subscription, Integer>  {
 

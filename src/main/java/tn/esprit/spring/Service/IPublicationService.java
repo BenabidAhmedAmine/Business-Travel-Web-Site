@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
-import tn.esprit.spring.entities.Publication;
+import tn.esprit.spring.Entity.Publication;
 
 
 public interface IPublicationService {

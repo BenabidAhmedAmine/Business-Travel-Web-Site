@@ -3,6 +3,8 @@ package tn.esprit.spring.Entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,10 +31,12 @@ public class Subscription implements Serializable{
 	private int subscriptionId;
 	
 	private String title;
+	@Enumerated(EnumType.STRING)
+	private Etat etat ;
 	
 	
-	//@OneToOne(mappedBy="subscription")
-	//private User user;
+	@OneToOne
+	private User userr;
 	
 	@ManyToOne
 	@JsonIgnore

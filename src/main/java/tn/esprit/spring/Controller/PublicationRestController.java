@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import tn.esprit.spring.Service.PublicationServiceImpl;
-
+import tn.esprit.spring.Entity.Comment;
+import tn.esprit.spring.BadWordFilter;
 import tn.esprit.spring.Entity.Publication;
 
 
@@ -84,7 +85,11 @@ public class PublicationRestController {
 
 
 
-	
+	@PostMapping("/add-Publication/{user-Id}")
+	public void ajouterEtaffecterListePublication(@RequestBody Publication publication,@PathVariable ("user-Id") Long userId ){
+ 		publication.setContents( BadWordFilter.getCensoredText(publication.getContents() ));
+ 		       publicationService.ajouterEtaffecterListePublication(publication, userId);
+ 			
 	
 	
 
@@ -93,5 +98,5 @@ public class PublicationRestController {
 
 	
 	
-	
+}
 

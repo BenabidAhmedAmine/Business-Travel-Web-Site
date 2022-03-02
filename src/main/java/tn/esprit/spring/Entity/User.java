@@ -66,8 +66,10 @@ public class User implements Serializable {
 	//@JsonIgnore
 	//private Set<Publication> publications;
 	
-	@OneToOne
-	private Subscription subscription;
+	//@OneToOne
+	//private Subscription subscription;
+	@OneToMany(mappedBy = "user")
+	private Set<Subscription> subscriptions;
 	
 	//@OneToMany(cascade = CascadeType.ALL)
 	//private Set<Chat> Chats;

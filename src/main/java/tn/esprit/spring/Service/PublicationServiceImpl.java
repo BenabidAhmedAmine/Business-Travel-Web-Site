@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
 import tn.esprit.spring.Repository.PublicationRepository;
+import tn.esprit.spring.Repository.UserRepository;
 
+import tn.esprit.spring.Entity.User;
 import tn.esprit.spring.Entity.Publication;
 
 @Service
@@ -17,6 +19,9 @@ public class PublicationServiceImpl implements IPublicationService {
 
 	@Autowired
 	PublicationRepository publicationRepository;
+	@Autowired
+	UserRepository userRepository;
+
 
 
 	
@@ -96,13 +101,17 @@ public class PublicationServiceImpl implements IPublicationService {
 
 
 
+	@Override
+	public void ajouterEtaffecterListePublication(Publication publication, Long userId) {
+		
+	       User User = userRepository.findById(userId).orElse(null);
+		
+		publication.setUser(User);
+		publicationRepository.save(publication);
+	}
 
 
 
-	
 
 
-	
-	
-	
 }

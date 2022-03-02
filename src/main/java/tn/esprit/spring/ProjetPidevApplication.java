@@ -28,6 +28,6 @@ public class ProjetPidevApplication {
 	}
 	@EventListener(ApplicationReadyEvent.class)
 	public void sendMail(){
-		senderService.sendEmail("rahma.chaabane@esprit.tn", "Comment", "Comment a ete effectue");
+		senderService.sendEmail("rahma.chaabane@esprit.tn", "Forum", "Wellcome to our forum page ");
 	}
 	}

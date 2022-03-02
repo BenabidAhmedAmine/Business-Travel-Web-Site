@@ -8,6 +8,7 @@ import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
 import tn.esprit.spring.Entity.Publication;
 
 
+
 public interface IPublicationService {
 	public List<Publication>retrieveAllPublications();
 	void deletePublication (Integer pubId);
@@ -21,5 +22,5 @@ public interface IPublicationService {
 public 	List<Publication> findAllpublicationtri();
 
 public 	List<Publication> retrieveallPUblicationstriee(String pub);
-
+public void	ajouterEtaffecterListePublication(Publication publication, Long  userId);
 }

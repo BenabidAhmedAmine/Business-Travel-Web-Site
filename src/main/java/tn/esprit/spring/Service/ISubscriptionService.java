@@ -14,5 +14,16 @@ public interface ISubscriptionService {
 	public List<Subscription>retrieveAllSubscriptions();
 	void deleteSubscription(Integer subscriptionId);
 	
+	
+	
+	
+	
+	
+	public void ajouterEtaffectersubscriptions(Subscription s, Long userId);
+		
+	
+	
+	
+
 	Optional<Subscription> retrieveSubscription(String title);
 }

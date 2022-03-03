@@ -1,11 +1,12 @@
 package tn.esprit.spring.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tn.esprit.spring.Entity.Badge;
 import tn.esprit.spring.Entity.User;
 import tn.esprit.spring.Repository.UserRepository;
 
@@ -16,38 +17,43 @@ public class UserServiceImpl implements IUserService {
 	UserRepository userRepository;
 
 	@Override
-	public List<User> retrieveAllUser() {
-		return (List<User>) userRepository.findAll();
-	}
-
-	@Override
-	public void deleteUser(long id) {
-		userRepository.deleteById(id);
+	public Badge AffectBadge(User user) {
+		long id = user.getUserId(); 
+		long count= userRepository.countBySubscriptionsUsersUserId(id);
+		if (count <= 5){
+			return Badge.Bronze;
+		}else if(count <= 10 && count < 5){
+			return Badge.Silver;
+		}else{
+			return Badge.Gold;
+		}
+		
 		
 	}
 
 	@Override
-	public Optional<User> retrieveUserById(long id) {
+	public List<String> SearchByName(String firstName, String lastName) {
 		
-		return userRepository.findById(id) ;
+		List<User> lusers=userRepository.findByFirstNameOrLastNameLike(firstName, lastName);
+		List<String> lnames= new ArrayList<String>();
+		for(User user :lusers){
+			lnames.add(user.getFirstName());
+			lnames.add(user.getLastName());
+			
+		}
+		return lnames ;
 	}
 
 	@Override
-	public User retrieveUserByName(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> SearchByDomain(String nameDomain) {
+		List<User> lusers=userRepository.findByDomainActivityName(nameDomain);
+		List<String> lnames= new ArrayList<String>();
+		for(User user :lusers){
+			lnames.add(user.getLastName());
+			
+		}
+		return lnames ;
 	}
 
-	@Override
-	public User addUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public User updateUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 }

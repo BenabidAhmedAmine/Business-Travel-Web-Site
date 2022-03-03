@@ -1,12 +1,16 @@
 package tn.esprit.spring.Entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,10 +26,10 @@ public class Subscription implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int subscriptionId;
-	private String employeeId; 
+	private long subscriptionId; 
 	private String title;
 	
- @OneToOne(mappedBy="subscription")
- private User user;
+ @ManyToMany(mappedBy="subscriptions",cascade = CascadeType.ALL)
+ @JsonIgnore
+ private Set<User> users;
 }

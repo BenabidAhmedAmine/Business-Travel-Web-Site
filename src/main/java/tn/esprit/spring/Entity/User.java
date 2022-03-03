@@ -9,8 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,39 +35,47 @@ public class User implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private DomainActivity domainActivity;
-	private Profession profession;
+	
 	
 	@OneToMany(cascade = CascadeType.ALL , mappedBy="user")
+	@JsonIgnore
 	private Set<Invitation> invitations;
 	
-	@OneToMany(cascade = CascadeType.ALL , mappedBy="user")
-	private Set<DomainActivity> domainActivitys;
+	@ManyToOne
+	@JsonIgnore
+	private DomainActivity domainActivity;
 	
 	@OneToMany(cascade = CascadeType.ALL , mappedBy="user")
+	@JsonIgnore
 	private Set<Travel> travels;
 
 	@OneToMany(cascade = CascadeType.ALL , mappedBy="user")
+	@JsonIgnore
 	private Set<Business> allBusiness;
 	
 	
 	
 	@OneToMany(cascade = CascadeType.ALL , mappedBy="user")
+	@JsonIgnore
 	private Set<Profession> professions;
 
 	@OneToMany(cascade = CascadeType.ALL , mappedBy="user")
+	@JsonIgnore
 	private Set<FeedBack> feedbacks;
 	
 	@OneToMany(cascade = CascadeType.ALL , mappedBy="user")
+	@JsonIgnore
 	private Set<Complaints> complaints;
 	
-	@OneToMany(cascade = CascadeType.ALL , mappedBy="user")
+	@OneToMany( mappedBy="user")
 	private Set<Publication> Publications;
 	
-	 @OneToOne
-	private Subscription subscription;
+	 @ManyToMany(cascade = CascadeType.ALL)
+	 @JsonIgnore
+	private Set<Subscription> subscriptions;
 	 
 	 @ManyToMany(cascade = CascadeType.ALL)
+	 @JsonIgnore
 	private Set<Chat> chats;
 	
 

@@ -4,44 +4,54 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
-public class Publication implements Serializable  {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Publication implements Serializable {/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int pubId;
-	private String username; 
-	private String title;
-	private String contents;
-	@Temporal(TemporalType.DATE)
-	Date datePub;
+	private Integer pubId;
 	
-	private int like ; 
-	private int dislike ;
-	@OneToMany(mappedBy = "publication", cascade = CascadeType.ALL)
-	private Set<Comment> comments;
-    
+	
+	private String contents;
+	
+	private Date datePub = new Date(System.currentTimeMillis());
+	
+	
 	@ManyToOne
+	@JsonIgnore
 	private User user;
+	
+	@OneToMany(mappedBy = "publication")
+	private Set<Comment> comments;
+	
+	//@ManyToMany(mappedBy="publications")
+	//private Set<User> users;
+	
 }

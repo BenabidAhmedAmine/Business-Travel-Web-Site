@@ -16,6 +16,7 @@ import tn.esprit.spring.Entity.Etat;
 import tn.esprit.spring.Entity.Publication;
 import tn.esprit.spring.Entity.User;
 
+
 @Repository
 public interface PublicationRepository extends CrudRepository<Publication, Integer> {
 	//public List<Publication> findByContents(String contents);
@@ -31,7 +32,12 @@ public interface PublicationRepository extends CrudRepository<Publication, Integ
 //	@Query(value="SELECT * FROM `publication` JOIN user u JOIN subscription s WHERE s.subscription.etat=:etat", nativeQuery = true)
 //	List<Publication> pubs(@Param("etat") Etat etat);
 	
+	//@Query("select *  from publication p "
+		//	+ "join p.user u "
+		//	+ "join u.subscription s "
+		//	+ "where s.etat=:subscribe")
+//public List<Publication> getAllpublicationBysubscription(@Param("etat")Etat etat);
+//}
+	
 	
 }
-
-

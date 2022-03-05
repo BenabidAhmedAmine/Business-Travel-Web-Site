@@ -58,6 +58,8 @@ public class PublicationRestController {
 //	public List<Publication> pubs(@PathVariable("etat") Etat etat)
 //	{return pr.pubs(etat);}
 	
+
+	
 	@ApiOperation(value = "Mettre a jour une publication")
 	@PutMapping("/modify-publication")
 	@ResponseBody

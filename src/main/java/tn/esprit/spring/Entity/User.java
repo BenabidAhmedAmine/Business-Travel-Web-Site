@@ -62,6 +62,9 @@ public class User implements Serializable {
 	
 	@OneToMany(mappedBy = "user")
 	private Set<Publication> publications;
+	
+	@OneToMany(mappedBy = "user")
+	private Set<Comment> comments;
 	//@ManyToMany
 	//@JsonIgnore
 	//private Set<Publication> publications;
@@ -70,6 +73,14 @@ public class User implements Serializable {
 	//private Subscription subscription;
 	@OneToMany(mappedBy = "user")
 	private Set<Subscription> subscriptions;
+	
+	
+	@OneToMany(mappedBy = "user")
+	private Set<Chat> chats;
+	
+
+	@OneToMany(mappedBy = "user")
+	private Set<Likee> likees;
 	
 	//@OneToMany(cascade = CascadeType.ALL)
 	//private Set<Chat> Chats;

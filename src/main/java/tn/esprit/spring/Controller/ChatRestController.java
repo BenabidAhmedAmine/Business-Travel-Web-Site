@@ -21,6 +21,7 @@ import com.javamaster.storage.UserStorage;
 
 import io.swagger.annotations.ApiOperation;
 import tn.esprit.spring.Service.ChatServiceImpl;
+import tn.esprit.spring.BadWordFilter;
 import tn.esprit.spring.Entity.Chat;
 
 
@@ -40,6 +41,7 @@ public class ChatRestController {
         System.out.println("handling send message: " + message + " to: " + to);
         boolean isExists = UserStorage.getInstance().getUsers().contains(to);
         if (isExists) {
+        //	message.setMessage( BadWordFilter.getCensoredText(message.getMessage() ));
             simpMessagingTemplate.convertAndSend("/topic/messages/" + to, message);
         }
     }

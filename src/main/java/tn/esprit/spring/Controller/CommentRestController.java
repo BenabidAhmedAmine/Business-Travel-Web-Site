@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import tn.esprit.spring.Service.CommentServiceImpl;
+import tn.esprit.spring.BadWordFilter;
 import tn.esprit.spring.Entity.Comment;
 import tn.esprit.spring.Entity.Publication;
 import tn.spring.APIResponse;
@@ -65,6 +66,14 @@ public class CommentRestController {
 	       Page<Comment> commentWithPagination = commentService.findCommentsWithPagination(offset, pageSize);
 	       return new APIResponse<>(commentWithPagination.getSize(), commentWithPagination);
 	   }
+	
+	
+	@PostMapping("/add-Comment/{user-Id}/{pub-Id}")
+	public void ajouterEtaffecterListeComment(@RequestBody Comment comment,@PathVariable ("user-Id") Long userId,@PathVariable ("pub-Id") int pubId){
+ 		comment.setContents( BadWordFilter.getCensoredText(comment.getContents() ));
+ 		      commentService.ajouterEtaffecterListeComment(comment, pubId, userId);
+ 			
+ 		}
 	
 	}
 

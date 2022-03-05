@@ -8,13 +8,19 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.Repository.CommentRepository;
-
+import tn.esprit.spring.Repository.PublicationRepository;
+import tn.esprit.spring.Repository.UserRepository;
+import tn.esprit.spring.Entity.User;
 import tn.esprit.spring.Entity.Comment;
 import tn.esprit.spring.Entity.Publication;
 @Service
 public class CommentServiceImpl implements ICommentService{
 	@Autowired
 	CommentRepository commentRepository;
+	@Autowired
+	UserRepository userRepository;
+	@Autowired
+	PublicationRepository publicationRepository;
 
 	@Override
 	public Comment addComment(Comment comment) {
@@ -42,6 +48,18 @@ public class CommentServiceImpl implements ICommentService{
 	public Page<Comment> findCommentsWithPagination(int offset, int pageSize) {
 		Page<Comment> comments = commentRepository.findAll(PageRequest.of(offset, pageSize));
 	    return  comments;
+	}
+
+	@Override
+	public void ajouterEtaffecterListeComment(Comment comment, Integer pubId, Long userId) {
+		// TODO Auto-generated method stub
+
+		Publication publication = publicationRepository.findById(pubId).orElse(null);
+	       User User = userRepository.findById(userId).orElse(null);
+		comment.setPublication(publication);
+		comment.setUser(User);
+		commentRepository.save(comment);
+		
 	}
 
 }

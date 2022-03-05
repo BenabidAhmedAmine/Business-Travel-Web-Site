@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.Repository.SubscriptionRepository;
@@ -65,9 +65,25 @@ public class SubscriptionServiceImpl implements ISubscriptionService {
 			
 		subscriptionRepository.save(s);
 	}
+
+	@Override
+	public List<Subscription> listSubscriptionParEtat(Etat etat) {
+		
+			return subscriptionRepository.findByEtat(etat);
+		}
 	
 	
+	@Scheduled(cron="*/15 * * * * *")
+	public 	void etatparetat(){
+			int nbrSubscribre=subscriptionRepository.getsubscriptionByEtat(Etat.subscribe);
+			int nbrSubscribed=subscriptionRepository.getsubscriptionByEtat(Etat.subscribed);
+			
+			System.out.println("nombre des personnes subscribe:"+nbrSubscribre);
+			System.out.println("nombre des personnes subscribed"+nbrSubscribed);
+	}
 	
+	
+}
 	
 	
 	
@@ -77,16 +93,6 @@ public class SubscriptionServiceImpl implements ISubscriptionService {
 	
 	
 
-	//@Override
-//	public void senMail(long userId) {
-	//	User u = userRepository.findById(userId).orElse(null);
-      // SimpleMailMessage msg = new SimpleMailMessage();
-
-       // msg.setFrom("rahma.chaabane@esprit.tn");
-      //  msg.setTo(u.getEmail());
-      //  msg.setSubject("Champ de saisie du sujet");
-      //  msg.setText("Champ de saisie du corps");
-     //  this.send("msg");
 
 	
 		
@@ -96,4 +102,3 @@ public class SubscriptionServiceImpl implements ISubscriptionService {
 
 	
 
-}

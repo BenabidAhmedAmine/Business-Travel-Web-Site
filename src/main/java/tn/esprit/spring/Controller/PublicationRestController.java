@@ -18,8 +18,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import tn.esprit.spring.Service.PublicationServiceImpl;
 import tn.esprit.spring.Entity.Comment;
+import tn.esprit.spring.Entity.Etat;
 import tn.esprit.spring.BadWordFilter;
 import tn.esprit.spring.Entity.Publication;
+import tn.esprit.spring.Repository.PublicationRepository;
 
 
 
@@ -30,7 +32,8 @@ public class PublicationRestController {
 
 	@Autowired
 	PublicationServiceImpl publicationService;
-	
+	@Autowired
+	PublicationRepository pr;
 	@ApiOperation(value = "Récupérer la liste des publications")
 	@GetMapping("/retrieve-all-publications")
 	@ResponseBody
@@ -51,7 +54,9 @@ public class PublicationRestController {
 	Publication p = publicationService.addPublication(publication);
 	return p;
 	}
-	
+//	@GetMapping("/pubs/{etat}")
+//	public List<Publication> pubs(@PathVariable("etat") Etat etat)
+//	{return pr.pubs(etat);}
 	
 	@ApiOperation(value = "Mettre a jour une publication")
 	@PutMapping("/modify-publication")

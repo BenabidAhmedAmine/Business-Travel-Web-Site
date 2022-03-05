@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,11 +38,19 @@ public class Chat  implements Serializable{
 	@Temporal(TemporalType.DATE)
 	Date sendingdate;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	User users;
 	
 	@OneToOne
+	private User userr;
+	
+	@ManyToOne
+	@JsonIgnore
 	private User user;
+	
+	//@ManyToOne(cascade = CascadeType.ALL)
+	//User users;
+	
+	//@OneToOne
+	//private User user;
 	//@ManyToMany(mappedBy="chats")
 	//private Set<Employee> employees;
 

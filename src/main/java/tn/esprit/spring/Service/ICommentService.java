@@ -15,5 +15,7 @@ public interface ICommentService {
 
 	public List<Comment>retrieveAllComments();
 	public Page<Comment> findCommentsWithPagination(int offset,int pageSize);
+	
+	public void	ajouterEtaffecterListeComment(Comment comment, Integer pubId,Long userId);	
 
 }

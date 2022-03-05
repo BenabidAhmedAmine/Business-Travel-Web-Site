@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.ApiOperation;
 import tn.esprit.spring.Service.SubscriptionServiceImpl;
-
+import tn.esprit.spring.Entity.Etat;
 import tn.esprit.spring.Entity.Subscription;
 
 
@@ -76,5 +76,13 @@ public class SubscriptionRestController {
 	public void  ajouterEtaffectersubscriptions(@RequestBody Subscription s, @PathVariable("userId") long userId) {
 		 subscriptionService.ajouterEtaffectersubscriptions(s, userId);
 	}
+	
+	@GetMapping("/AfficherSubscriptionEtat/{etat}")
+	@ResponseBody
+	 List<Subscription> AfficherSubscriptionEtat(@PathVariable("etat")Etat etat) {
+		return subscriptionService.listSubscriptionParEtat(etat);
+	}
+	
+	
 	
 	}

@@ -51,8 +51,18 @@ public class Publication implements Serializable {/**
 	@OneToMany(mappedBy = "publication")
 	private Set<Comment> comments;
 	
-	@OneToMany(mappedBy = "publication")
-	private Set<Likee> likees;
+	
+	
+	
+	//@OneToMany(mappedBy = "publication")
+	//private Set<Likee> likees;
+	
+	
+	//@OneToMany(mappedBy = "publication")
+	//private Set<Dislike> dislikes;
+	
+	
+	
 	
 	//@ManyToMany(mappedBy="publications")
 	//private Set<User> users;

@@ -6,5 +6,7 @@ import tn.esprit.spring.Entity.Likee;
 import tn.esprit.spring.Entity.Publication;
 
 public interface LikeRepository extends CrudRepository<Likee, Integer>{
-
+  
+	
+	
 }

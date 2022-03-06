@@ -79,8 +79,10 @@ public class User implements Serializable {
 	private Set<Chat> chats;
 	
 
-	@OneToMany(mappedBy = "user")
-	private Set<Likee> likees;
+	//@OneToMany(mappedBy = "user")
+	//private Set<Likee> likees;
+	//@OneToMany(mappedBy = "user")
+	//private Set<Dislike> dislikes;
 	
 	//@OneToMany(cascade = CascadeType.ALL)
 	//private Set<Chat> Chats;

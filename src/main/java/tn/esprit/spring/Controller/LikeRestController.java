@@ -1,7 +1,10 @@
 package tn.esprit.spring.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -9,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import tn.esprit.spring.BadWordFilter;
 import tn.esprit.spring.Entity.Likee;
 import tn.esprit.spring.Entity.Publication;
 import tn.esprit.spring.Repository.LikeRepository;
-import tn.esprit.spring.Repository.PublicationRepository;
 import tn.esprit.spring.Service.LikeeServiceImpl;
 
 
@@ -37,5 +40,33 @@ public class LikeRestController {
 	Likee l = likeeService.addLikee(likee);
 	return l;
 	}
+	
+	
+	
+	
+	
+	
+	@ApiOperation(value = "Supprimer une like par Id")
+	@DeleteMapping("/remove-like/{idlike}")
+	@ResponseBody
+	public void removeLike(@PathVariable("idlike") Integer idlike) {
+		likeeService.deleteLikee(idlike);
+	}
+	
+	
 
+	@PostMapping("/add-Like/{pub-Id}")
+	public void ajouterEtaffecterListeLikee(@RequestBody Likee likee,@PathVariable ("pub-Id") Integer pubId ){
+ 	
+ 		       likeeService.ajouterEtaffecterlike(likee, pubId);}
+ 			
+
+
+@PostMapping("/add-Like/{pub-Id}/{user-Id}")
+public void ajouterEtaffecterListeLikee(@RequestBody Likee likee,@PathVariable ("pub-Id") Integer pubId,@PathVariable ("user-Id") Long userId ){
+	
+		       likeeService.ajouterEtaffecterlike(likee, pubId,userId);
+		       }
+			
 }
+

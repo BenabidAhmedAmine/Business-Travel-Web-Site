@@ -2,12 +2,14 @@ package tn.esprit.spring.Entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -34,12 +36,18 @@ public class Likee implements Serializable {
 
 	 private int nbrlike = 0;
 	 
-	 @ManyToOne
-		@JsonIgnore
-		private Publication publication;
 	 
-	 @ManyToOne
-		@JsonIgnore
+	 
+	 @OneToOne(cascade = CascadeType.ALL)
 		private User user;
+		@OneToOne(cascade = CascadeType.ALL)
+		private Publication publication;
+	// @ManyToOne
+	//	@JsonIgnore
+	//	private Publication publication;
+	 
+	// @ManyToOne
+	//	@JsonIgnore
+		//private User user;
 
 }

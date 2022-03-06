@@ -44,9 +44,9 @@ public class LikeeServiceImpl implements ILikeService{
 		likeRepository.deleteById(idlike);		
 	}
 	@Override
-	public void ajouterEtaffecterlike(Likee likee, Integer pubId, Long userId) {
+	public void ajouterEtaffecterlike(Likee likee, Integer pubId, Long Id) {
 		Publication publication = publicationRepository.findById(pubId).orElse(null);
-		User user = userRepository.findById(userId).orElse(null);
+		User user = userRepository.findById(Id).orElse(null);
 		likee.setPublication(publication);
 		likee.setUser(user);
 

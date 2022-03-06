@@ -60,10 +60,10 @@ public class DislikeRestController {
 	}
 
 
-@PostMapping("/add-Dislike/{pub-Id}/{user-Id}")
-public void ajouterEtaffecterListeLikee(@RequestBody Dislike d,@PathVariable ("pub-Id") Integer pubId,@PathVariable ("user-Id") Long userId ){
+@PostMapping("/add-Dislike/{pub-Id}/{Id}")
+public void ajouterEtaffecterListeLikee(@RequestBody Dislike d,@PathVariable ("pub-Id") Integer pubId,@PathVariable ("Id") Long Id ){
 	
-		       dislikeService.ajouterEtaffecterlike(d, pubId, userId);
+		       dislikeService.ajouterEtaffecterlike(d, pubId, Id);
 		       }
 			
 }

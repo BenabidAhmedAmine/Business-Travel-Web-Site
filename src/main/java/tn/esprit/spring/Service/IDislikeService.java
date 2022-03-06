@@ -8,7 +8,7 @@ public interface IDislikeService {
 
 	public Dislike addDislike(Dislike dislike);
 	public void ajouterEtaffecterdislike(Dislike d,Integer pubId);
-	public void ajouterEtaffecterlike(Dislike d,Integer pubId,Long userId);
+	public void ajouterEtaffecterlike(Dislike d,Integer pubId,Long Id);
 
 	
 	void deleteDislike (Integer iddislike);

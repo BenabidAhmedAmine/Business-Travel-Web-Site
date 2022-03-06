@@ -54,9 +54,10 @@ public class PublicationRestController {
 	Publication p = publicationService.addPublication(publication);
 	return p;
 	}
-//	@GetMapping("/pubs/{etat}")
-//	public List<Publication> pubs(@PathVariable("etat") Etat etat)
-//	{return pr.pubs(etat);}
+	@GetMapping("/pubs/{etat}")
+	public List<Publication> pubs(@PathVariable("etat") Etat etat)
+	{return pr.pubs(etat);
+	}
 	
 
 	
@@ -92,10 +93,10 @@ public class PublicationRestController {
 
 
 
-	@PostMapping("/add-Publication/{user-Id}")
-	public void ajouterEtaffecterListePublication(@RequestBody Publication publication,@PathVariable ("user-Id") Long userId ){
+	@PostMapping("/add-Publication/{Id}")
+	public void ajouterEtaffecterListePublication(@RequestBody Publication publication,@PathVariable ("Id") Long Id ){
  		publication.setContents( BadWordFilter.getCensoredText(publication.getContents() ));
- 		       publicationService.ajouterEtaffecterListePublication(publication, userId);
+ 		       publicationService.ajouterEtaffecterListePublication(publication, Id);
  			
 	
 	

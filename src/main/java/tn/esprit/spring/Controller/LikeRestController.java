@@ -62,10 +62,10 @@ public class LikeRestController {
  			
 
 
-@PostMapping("/add-Like/{pub-Id}/{user-Id}")
-public void ajouterEtaffecterListeLikee(@RequestBody Likee likee,@PathVariable ("pub-Id") Integer pubId,@PathVariable ("user-Id") Long userId ){
+@PostMapping("/add-Like/{pub-Id}/{Id}")
+public void ajouterEtaffecterListeLikee(@RequestBody Likee likee,@PathVariable ("pub-Id") Integer pubId,@PathVariable ("Id") Long Id ){
 	
-		       likeeService.ajouterEtaffecterlike(likee, pubId,userId);
+		       likeeService.ajouterEtaffecterlike(likee, pubId,Id);
 		       }
 			
 }

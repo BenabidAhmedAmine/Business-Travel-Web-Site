@@ -29,8 +29,8 @@ public interface PublicationRepository extends CrudRepository<Publication, Integ
 	List<Publication> findAllpublicationtri();
 	@Query(value= "select count (p) from publication p where p.user=:user ",nativeQuery = true)
 	int getnbPublicationsByUser(@Param("user") User user);
-//	@Query(value="SELECT * FROM `publication` JOIN user u JOIN subscription s WHERE s.subscription.etat=:etat", nativeQuery = true)
-//	List<Publication> pubs(@Param("etat") Etat etat);
+@Query(value="SELECT * FROM `publication` JOIN user u JOIN subscription s WHERE s.etat=:etat", nativeQuery = true)
+	List<Publication> pubs(@Param("etat") Etat etat);
 	
 	//@Query("select *  from publication p "
 		//	+ "join p.user u "

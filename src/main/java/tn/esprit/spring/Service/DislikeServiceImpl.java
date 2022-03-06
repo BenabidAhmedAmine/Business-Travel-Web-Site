@@ -43,9 +43,9 @@ public class DislikeServiceImpl  implements IDislikeService {
 	}
 
 	@Override
-	public void ajouterEtaffecterlike(Dislike d, Integer pubId, Long userId) {
+	public void ajouterEtaffecterlike(Dislike d, Integer pubId, Long Id) {
 		Publication publication = publicationRepository.findById(pubId).orElse(null);
-		User user = userRepository.findById(userId).orElse(null);
+		User user = userRepository.findById(Id).orElse(null);
 		d.setPublication(publication);
 		d.setUser(user);
 

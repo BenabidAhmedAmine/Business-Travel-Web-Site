@@ -102,9 +102,9 @@ public class PublicationServiceImpl implements IPublicationService {
 
 
 	@Override
-	public void ajouterEtaffecterListePublication(Publication publication, Long userId) {
+	public void ajouterEtaffecterListePublication(Publication publication, Long Id) {
 		
-	       User User = userRepository.findById(userId).orElse(null);
+	       User User = userRepository.findById(Id).orElse(null);
 		
 		publication.setUser(User);
 		publicationRepository.save(publication);

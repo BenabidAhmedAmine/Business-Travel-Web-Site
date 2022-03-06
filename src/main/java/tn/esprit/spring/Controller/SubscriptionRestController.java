@@ -71,10 +71,10 @@ public class SubscriptionRestController {
 	}
 	
 	
-	@PostMapping("/ajouterEtaffectersubscriptions/{userId}")
+	@PostMapping("/ajouterEtaffectersubscriptions/{Id}")
 	@ResponseBody
-	public void  ajouterEtaffectersubscriptions(@RequestBody Subscription s, @PathVariable("userId") long userId) {
-		 subscriptionService.ajouterEtaffectersubscriptions(s, userId);
+	public void  ajouterEtaffectersubscriptions(@RequestBody Subscription s, @PathVariable("Id") Long Id) {
+		 subscriptionService.ajouterEtaffectersubscriptions(s,Id);
 	}
 	
 	@GetMapping("/AfficherSubscriptionEtat/{etat}")

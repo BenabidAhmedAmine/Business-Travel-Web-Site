@@ -20,7 +20,7 @@ public interface ISubscriptionService {
 	
 	
 	
-	public void ajouterEtaffectersubscriptions(Subscription s, Long userId);
+	public void ajouterEtaffectersubscriptions(Subscription s, Long Id );
 		
 	
 	

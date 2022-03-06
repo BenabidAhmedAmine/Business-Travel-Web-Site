@@ -51,11 +51,11 @@ public class CommentServiceImpl implements ICommentService{
 	}
 
 	@Override
-	public void ajouterEtaffecterListeComment(Comment comment, Integer pubId, Long userId) {
+	public void ajouterEtaffecterListeComment(Comment comment, Integer pubId, Long Id) {
 		// TODO Auto-generated method stub
 
 		Publication publication = publicationRepository.findById(pubId).orElse(null);
-	       User User = userRepository.findById(userId).orElse(null);
+	       User User = userRepository.findById(Id).orElse(null);
 		comment.setPublication(publication);
 		comment.setUser(User);
 		commentRepository.save(comment);

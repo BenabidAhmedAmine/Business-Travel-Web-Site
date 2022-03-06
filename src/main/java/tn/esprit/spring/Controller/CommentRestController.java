@@ -68,10 +68,10 @@ public class CommentRestController {
 	   }
 	
 	
-	@PostMapping("/add-Comment/{user-Id}/{pub-Id}")
-	public void ajouterEtaffecterListeComment(@RequestBody Comment comment,@PathVariable ("user-Id") Long userId,@PathVariable ("pub-Id") int pubId){
+	@PostMapping("/add-Comment/{Id}/{pub-Id}")
+	public void ajouterEtaffecterListeComment(@RequestBody Comment comment,@PathVariable ("Id") Long Id,@PathVariable ("pub-Id") int pubId){
  		comment.setContents( BadWordFilter.getCensoredText(comment.getContents() ));
- 		      commentService.ajouterEtaffecterListeComment(comment, pubId, userId);
+ 		      commentService.ajouterEtaffecterListeComment(comment, pubId, Id);
  			
  		}
 	

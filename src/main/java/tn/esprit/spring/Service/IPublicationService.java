@@ -22,5 +22,5 @@ public interface IPublicationService {
 public 	List<Publication> findAllpublicationtri();
 
 public 	List<Publication> retrieveallPUblicationstriee(String pub);
-public void	ajouterEtaffecterListePublication(Publication publication, Long  userId);
+public void	ajouterEtaffecterListePublication(Publication publication, Long  Id);
 }

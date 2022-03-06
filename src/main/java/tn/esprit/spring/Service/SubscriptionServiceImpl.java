@@ -55,15 +55,19 @@ public class SubscriptionServiceImpl implements ISubscriptionService {
 	}
 
 	@Override
-	public void ajouterEtaffectersubscriptions(Subscription s, Long userId) {
+	public void ajouterEtaffectersubscriptions(Subscription s, Long Id ) {
 		s.setEtat(Etat.subscribe);
 		subscriptionRepository.save(s);
 		
-		User user = userRepository.findById(userId).orElse(null);
+		User user = userRepository.findById(Id).orElse(null);
 		
 			s.setUser(user);
 			
 		subscriptionRepository.save(s);
+		
+		s.setEtat(Etat.subscribed);
+		subscriptionRepository.save(s);
+
 	}
 
 	@Override

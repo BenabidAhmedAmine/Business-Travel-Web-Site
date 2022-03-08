@@ -1,6 +1,7 @@
 package tn.esprit.spring.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.Entity.Likee;
@@ -52,5 +53,17 @@ public class LikeeServiceImpl implements ILikeService{
 
 		likeRepository.save(likee);
 	}
+	
+	
+	//public String getNbrLikee4() {
+		
+		// String x="";
+		 //if (likeRepository.getNbrLikee3()>likeRepository.getNbrLikee2()){
+			// x="Users are not satisfied";
+		// }else {
+			// x="Users are satisfied";
+	//	 }
+		//return  x;
+	//}
 	
 }

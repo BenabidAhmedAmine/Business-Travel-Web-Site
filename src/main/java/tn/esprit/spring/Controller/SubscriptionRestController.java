@@ -70,7 +70,7 @@ public class SubscriptionRestController {
 	return subscriptionService.retrieveSubscription(title);
 	}
 	
-	
+	// il faut ajout id de l'autre user pour quelle marche 
 	@PostMapping("/ajouterEtaffectersubscriptions/{Id}")
 	@ResponseBody
 	public void  ajouterEtaffectersubscriptions(@RequestBody Subscription s, @PathVariable("Id") Long Id) {

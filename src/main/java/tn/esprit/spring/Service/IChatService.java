@@ -11,5 +11,11 @@ public interface IChatService {
 	public void deleteChat(Integer chatId);
 	public List<Chat>retrieveAllChats();
 	public  Chat verifierword(Chat chat);
+   public  String ajouterEtAffecterChat(Chat c ,Long Id);
+//public List<Chat>retrieveAllChatsmatching(Chat c ,Long Id);
+   
+   public String rett(Chat c, Long Id);
 
+    
+    
 }

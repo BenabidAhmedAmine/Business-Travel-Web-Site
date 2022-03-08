@@ -98,7 +98,11 @@ public class PublicationServiceImpl implements IPublicationService {
 		return null;
 	}
 
-
+	//@Override
+//	public List<Publication> getPublicationByUser(Long Id) {
+	//	User user=userRepository.findById(Id).orElse(null);
+		//return publicationRepository.findByUser(user);
+	//}
 
 
 	@Override

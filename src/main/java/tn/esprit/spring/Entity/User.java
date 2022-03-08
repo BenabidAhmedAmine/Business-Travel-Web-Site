@@ -65,6 +65,12 @@ public class User implements Serializable {
 	
 	@OneToMany(mappedBy = "user")
 	private Set<Comment> comments;
+	
+	@OneToMany(cascade = CascadeType.ALL , mappedBy="user1")
+	private Set<Matching> matching1;
+	
+	@OneToMany(cascade = CascadeType.ALL , mappedBy="user2")
+	private Set<Matching> matching2;
 	//@ManyToMany
 	//@JsonIgnore
 	//private Set<Publication> publications;

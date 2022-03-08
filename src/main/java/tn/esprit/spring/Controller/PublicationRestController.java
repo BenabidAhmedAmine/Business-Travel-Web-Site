@@ -21,7 +21,9 @@ import tn.esprit.spring.Entity.Comment;
 import tn.esprit.spring.Entity.Etat;
 import tn.esprit.spring.BadWordFilter;
 import tn.esprit.spring.Entity.Publication;
+import tn.esprit.spring.Entity.User;
 import tn.esprit.spring.Repository.PublicationRepository;
+import tn.esprit.spring.Repository.UserRepository;
 
 
 
@@ -34,6 +36,10 @@ public class PublicationRestController {
 	PublicationServiceImpl publicationService;
 	@Autowired
 	PublicationRepository pr;
+	@Autowired
+	UserRepository ur;
+	
+	
 	@ApiOperation(value = "Récupérer la liste des publications")
 	@GetMapping("/retrieve-all-publications")
 	@ResponseBody
@@ -54,11 +60,20 @@ public class PublicationRestController {
 	Publication p = publicationService.addPublication(publication);
 	return p;
 	}
-	@GetMapping("/pubs/{etat}")
-	public List<Publication> pubs(@PathVariable("etat") Etat etat)
-	{return pr.pubs(etat);
-	}
+	//@GetMapping("/pubs/{etat}")
+//	public List<Publication> pubs(@PathVariable("etat") Etat etat)
+	//{return pr.pubs(etat);
+	//}
 	
+	
+	
+	
+	
+//	@GetMapping("/listepublications/{Id}")
+//	@ResponseBody
+	// List<Publication> getPublicationsByUser(@PathVariable("Id") Long Id) {
+	//	return publicationService.getPublicationByUser(Id);
+	//}
 
 	
 	@ApiOperation(value = "Mettre a jour une publication")
@@ -92,6 +107,8 @@ public class PublicationRestController {
 	//}
 
 
+	
+	
 
 	@PostMapping("/add-Publication/{Id}")
 	public void ajouterEtaffecterListePublication(@RequestBody Publication publication,@PathVariable ("Id") Long Id ){

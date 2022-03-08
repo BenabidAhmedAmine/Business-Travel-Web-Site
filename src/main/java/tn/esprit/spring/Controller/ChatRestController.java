@@ -57,6 +57,12 @@ public class ChatRestController {
 
 }
 	
+	@PostMapping("/ajouterEtaffecterchat/{Id}")
+	@ResponseBody
+public void  ajouterEtaffectercomplaints(@RequestBody Chat c, @PathVariable("Id") long Id) {
+	 chatService.ajouterEtAffecterChat(c, Id);
+	}
+	
 
 	
 	
@@ -66,5 +72,7 @@ public class ChatRestController {
 	List<Chat> listChats= chatService.retrieveAllChats();
 	return listChats;
 	}
+	
+	
 
 }

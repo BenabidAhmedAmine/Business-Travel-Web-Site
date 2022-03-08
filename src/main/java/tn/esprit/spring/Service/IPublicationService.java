@@ -20,7 +20,7 @@ public interface IPublicationService {
 //	Optional<Publication> retrievePublication(String contents);
 	public List<Publication> findByLastPublication(Date datePub, Sort sort); 
 public 	List<Publication> findAllpublicationtri();
-
+//List<Publication> getPublicationByUser(Long Id);
 public 	List<Publication> retrieveallPUblicationstriee(String pub);
 public void	ajouterEtaffecterListePublication(Publication publication, Long  Id);
 }

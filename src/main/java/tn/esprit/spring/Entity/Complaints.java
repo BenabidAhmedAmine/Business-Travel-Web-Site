@@ -49,7 +49,7 @@ public class Complaints implements Serializable {
 	private User user;
 	
 	@OneToOne
-	private User userr;
+	private User toUser;
 
 	
 	

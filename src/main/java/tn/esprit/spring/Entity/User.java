@@ -1,6 +1,7 @@
 package tn.esprit.spring.Entity;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -18,6 +19,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @NoArgsConstructor
@@ -28,7 +30,7 @@ public class User implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long userId;
+	private Long Id;
 	private String login;
 	private String password;
 	private String photo;
@@ -40,24 +42,25 @@ public class User implements Serializable {
 	
 
 	
-	
 	@OneToMany(cascade = CascadeType.ALL , mappedBy="user")
 	private Set<Profession> professions;
 
 	@OneToMany(cascade = CascadeType.ALL , mappedBy="user")
+	@JsonIgnore
 	private Set<FeedBack> feedbacks;
-	
 	
 	
 	@OneToMany(cascade = CascadeType.ALL , mappedBy="user")
 	@JsonIgnore
 	private Set<Complaints> complaints;
 	
+	@OneToMany(cascade = CascadeType.ALL , mappedBy="user1")
+	@JsonIgnore
+	private List<Matching> matching1;
 	
-	
-	
+	@OneToMany(cascade = CascadeType.ALL , mappedBy="user2")
+	@JsonIgnore
+	private List<Matching> matching2;
 
-	
-	
 	
 }

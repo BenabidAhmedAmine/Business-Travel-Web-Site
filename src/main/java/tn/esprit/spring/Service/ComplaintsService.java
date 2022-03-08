@@ -1,21 +1,29 @@
 package tn.esprit.spring.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.mail.MailSender;
+//import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.Entity.Complaints;
+import tn.esprit.spring.Entity.Matching;
 import tn.esprit.spring.Entity.StatusComplaints;
 import tn.esprit.spring.Entity.User;
 import tn.esprit.spring.Repository.ComplaintsRepository;
+import tn.esprit.spring.Repository.MatchingRepository;
 import tn.esprit.spring.Repository.UserRepository;
 
 
@@ -26,44 +34,77 @@ public class ComplaintsService implements IComplaintsService{
 	@Autowired
 	ComplaintsRepository complaintsRepository;
 	@Autowired
+	MatchingRepository MR;
+	@Autowired
 	UserRepository userRepository;
 	
-	@Autowired
-    private MailSender sender;
+	//@Autowired
+    //private MailSender sender;
 
-    public void sendMail(long userId) {
-    	User u = userRepository.findById(userId).orElse(null);
-        SimpleMailMessage msg = new SimpleMailMessage();
-
-        msg.setFrom("chedlikad@gmail.com");
-        msg.setTo(u.getEmail());
-        msg.setSubject("Champ de saisie du sujet");
-        msg.setText("Champ de saisie du corps");
-
-        this.sender.send(msg);
-    }
+	 @Autowired
+	 public JavaMailSender emailSender;
+	private Matching mm;
+	private Matching m;
+	 
+	 
 	
+	 public void sendSimpleEmail(String toAddress, String subject, String message) {
+	  SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+	  simpleMailMessage.setTo(toAddress);
+	  simpleMailMessage.setSubject(subject);
+	  simpleMailMessage.setText(message);
+	  emailSender.send(simpleMailMessage);
+	 }
+
 	
 	
 	
 	@Override
-	public void ajouterEtaffectercomplaints(Complaints c, Long userId) {
+	public String ajouterEtaffectercomplaints(Complaints c, Long Id) {
+		List<Matching> lu1 = new ArrayList<Matching>();
+		List<Matching> lu2 = new ArrayList<Matching>();
+		User user = userRepository.findById((long) Id).orElse(null);
+		User user2 =userRepository.findById(c.getToUser().getId()).orElse(null); 
+		System.out.println("user2"+user2.getId());
+		System.out.println("useer1"+user.getId());
 		c.setStatusComplaints(StatusComplaints.Untreated);
-		complaintsRepository.save(c);
+		c.setUser(user);
 		
-		User user = userRepository.findById(userId).orElse(null);
-		
-			c.setUser(user);
-			
-		complaintsRepository.save(c);
+		Matching M =MR.findByUser1AndUser2(user,user2);
+		Matching M2=MR.findByUser2AndUser1(user, user2);
+		if(M==null){
+			if(M2.getMatchuser1().equals("yes") && M2.getMatchuser2().equals("yes")){
+				
+				complaintsRepository.save(c);
+				return "Ajouter Avec Success";
+			}else
+				return "Ajout Impossible ";
+		}
+		else
+		if(M2==null){
+			if(M.getMatchuser1().equals("yes") && M.getMatchuser2().equals("yes")){
+				
+				complaintsRepository.save(c);
+				return "Ajouter Avec Success";
+			}else
+				return "Ajout Impossible ";
+		}
+		else{
+if(M.getMatchuser1().equals("yes") && M.getMatchuser2().equals("yes")){
+				
+				complaintsRepository.save(c);
+				return "Ajouter Avec Success";
+			}else
+				return "Ajout Impossible ";
+		}
+	
 	}
 
-	
+
 	@Override
-	
-	public void assignComplaintsToUser(long idComplaint, long userId) {
+	public void assignComplaintsToUser(long idComplaint, long Id) {
 		Complaints c = complaintsRepository.findById(idComplaint).orElse(null);
-		User u = userRepository.findById(userId).orElse(null);
+		User u = userRepository.findById(Id).orElse(null);
 		c.setUser(u);
 		complaintsRepository.save(c);
 	}
@@ -95,9 +136,14 @@ public class ComplaintsService implements IComplaintsService{
 	
 	@Override
 	public Complaints updateComplaints(Complaints c) {
+		//User u = userRepository.findById(userId).orElse(null);
 	Complaints complaints = complaintsRepository.findById(c.getIdComplaint()).orElse(null);
 			complaints.setStatusComplaints(c.getStatusComplaints());
-		return complaintsRepository.save(complaints);
+			if(c.getStatusComplaints()==StatusComplaints.Treated){
+			sendSimpleEmail(complaints.getToUser().getEmail(), "Avertissement", "Une reclamation à étè déposée en toi, veuillez etre responsable");
+			return complaintsRepository.save(complaints);}
+			sendSimpleEmail(complaints.getUser().getEmail(), "InProgress", "votre reclamation est en cour de traitement");
+			return complaintsRepository.save(complaints);
 	}
 
 	@Override
@@ -107,9 +153,9 @@ public class ComplaintsService implements IComplaintsService{
 	
 
 	@Override
-	public List<Complaints> getComplaintsByUser(Long userId) {
-		User user=userRepository.findById(userId).orElse(null);
-		return complaintsRepository.findByUser(user);
+	public List<Complaints> getComplaintsByUser(Long Id) {
+		User user=userRepository.findById(Id).orElse(null);
+		return complaintsRepository.findByToUser(user);
 	}
 	
 	public List<Complaints> listeDeComplaintsParStatus(StatusComplaints statusComplaints) {
@@ -139,6 +185,17 @@ public class ComplaintsService implements IComplaintsService{
 	return null;
 }
 	
+	public Page<Complaints> findComplaintwithPagination(int offset,int pagesize ){ 
+		Page<Complaints> com=	complaintsRepository.findAll(PageRequest.of(offset, pagesize));
+		return com;
+	}
+	
+	@Override
+	public int getnbrComplaintsByUser(Long Id) {
+		return complaintsRepository.getnbrComplaintsByUser(Id);
+		
+	}
+	
 	@Scheduled(cron="*/30 * * * * *")
 	public void nbreComplaintsByStatusComplaints(){
 		int nbrUntreated=complaintsRepository.getComplaintsByStatusComplaints(StatusComplaints.Untreated);
@@ -149,16 +206,16 @@ public class ComplaintsService implements IComplaintsService{
 		System.out.println("nombre des Reclamation treated:"+nbrTreated);
 		
 	}
-	
-	
+
 	//private User user;
-	//@Scheduled(cron="*/30 * * * * *")
-	/*public void nbreClientParUser(){
-		int nbruser=complaintsRepository.getComplaintsByUser(User.userId);
-		System.out.println("nombre des Reclamation untreated:"+nbruser);
+	@Scheduled(cron="*/15 * * * * *")
+	public void SommeComplaints() {
+		int nbruser=complaintsRepository.SommeComplaint();
+		System.out.println("n:"+nbruser);
 		
-	}*/
-}
+	}
 	
 	
+	
+}	
 	

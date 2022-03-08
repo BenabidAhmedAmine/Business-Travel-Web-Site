@@ -7,14 +7,32 @@ import tn.esprit.spring.Entity.FeedBack;
 
 public interface IFeedbackService {
 
+
+	void ajouterEtaffecterrFeedBack(FeedBack f, Long Id);
+	
 	List<FeedBack> retrieveAllFeedBacks();
-
-	FeedBack addFeedBack(FeedBack c);
-
+	
 	void deleteFeedBack(Long idFeedBack);
-
-	FeedBack updateFeedBack(FeedBack c);
-
+	
 	Optional<FeedBack> retrieveFeedBack(Long idFeedBack);
 
+	String updateFeedBack(Long idFeedBack, int note);
+
+	List<FeedBack> listLastReviews();
+
+	int nbReview(Long Id);
+
+	float SommeNote(Long Id);
+
+
+	
+	public Optional<FeedBack> getfeedbackById(Long Id);
+
+	Long topMoyenneuser();
+
+	float Moyenne_user(Long Id);
+
+	List<FeedBack> retrieveFeedBackwithsorting(String field);
+
+	
 }

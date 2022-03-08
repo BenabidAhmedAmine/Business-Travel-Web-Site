@@ -5,17 +5,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import tn.esprit.spring.Entity.Subscription;
-
+import tn.esprit.spring.Entity.Travel;
 @Repository
-public interface SubscriptionRepository extends JpaRepository<Subscription, Long> {
-	
+public interface TravelRepository extends JpaRepository<Travel, Integer> {
+
 	
 	
 	//
-	@Query("SELECT count(*) FROM Subscription s where (s.userr.Id =:id)")
-	public int countSubscribers(@Param ("id") Long id);
+	@Query("SELECT count(*) FROM Travel t where (t.user.Id =:id)")
+	public int countTravels(@Param ("id") Long id);
 	
-	
-
 }

@@ -5,17 +5,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import tn.esprit.spring.Entity.Subscription;
-
+import tn.esprit.spring.Entity.Project;
 @Repository
-public interface SubscriptionRepository extends JpaRepository<Subscription, Long> {
-	
+public interface ProjectRepository extends JpaRepository<Project, Long>{
+
 	
 	
 	//
-	@Query("SELECT count(*) FROM Subscription s where (s.userr.Id =:id)")
-	public int countSubscribers(@Param ("id") Long id);
-	
-	
-
+	@Query("SELECT count(*) FROM Project p join p.users u where u.Id =:id")
+	public int countProject(@Param ("id") Long Id);
 }

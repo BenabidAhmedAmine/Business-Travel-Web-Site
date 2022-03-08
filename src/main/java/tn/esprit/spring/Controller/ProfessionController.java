@@ -19,7 +19,7 @@ public class ProfessionController {
 	
 		
 	@Autowired
-	IProfessionService professionService ;
+	IProfessionService professionService ; 
 		
 
 	@ApiOperation(value = "add Profession ")

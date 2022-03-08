@@ -1,12 +1,18 @@
 package tn.esprit.spring.Entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,13 +28,18 @@ public class FeedBack implements Serializable {
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	private Long idFeedBack ;
 
-	private long IdFeedback;
-	private String Object;
-	private String Opinion;
-	private String Rainting;
+	@Temporal (TemporalType.DATE)
+	private Date DateFeedback;
+	private int note;
+	private String review ;
 	
 	@ManyToOne
+	@JsonIgnore
 	private User user;
+	
+	@OneToOne
+	private User ToUser;
 	
 }

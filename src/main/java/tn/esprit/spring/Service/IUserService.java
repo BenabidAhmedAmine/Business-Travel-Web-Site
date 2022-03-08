@@ -7,10 +7,31 @@ import tn.esprit.spring.Entity.User;
 
 public interface IUserService {
 	
-	public List<String> SearchByName(String firstName, String lastName);
+	public List<User> getAllEmmployeesOfCompany(String companyName);
 	
-	public List<String> SearchByDomain(String nameDomain);
+	public List<User> SearchEmployeesByName(String firstName,String lastName, String companyName);
 	
-	public Badge AffectBadge(User user);
+	public List<User> SearchEmployeesByProfession(String nameProfession, String companyName);
+	
+	public User getCompanyName(Long idUser);
+	
+	
+	//calcul badge
+	public Badge AffectBadge(Long idUser);
+	
+	public int nbrTravelsComparedWithComplaints(Long idUser);
+	
+	public int nbrPubComparedWithSubscribersAndLikes(Long idUser);
+	
+	public int calculFeedback(Long idUser);
+	
+	public int calculSubcription(Long idUser);
+	
+	public int calculProjet(Long idUser);
+	
+	public Integer getNbrLikesOfPub(Long idUser);
+	
+	
+	
 
 }

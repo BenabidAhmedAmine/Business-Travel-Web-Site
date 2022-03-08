@@ -1,12 +1,14 @@
 package tn.esprit.spring.Entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,7 +28,8 @@ public class Profession implements Serializable {
 	private String name;
 	
 	
-	@ManyToOne
-	private User user;
+	@OneToMany(cascade = CascadeType.ALL , mappedBy="profession")
+	private Set<User> users;
+	
 
 }

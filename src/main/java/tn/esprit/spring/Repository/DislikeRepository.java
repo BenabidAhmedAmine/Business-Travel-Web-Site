@@ -5,17 +5,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import tn.esprit.spring.Entity.Subscription;
-
+import tn.esprit.spring.Entity.Dislike;
 @Repository
-public interface SubscriptionRepository extends JpaRepository<Subscription, Long> {
-	
+public interface DislikeRepository extends JpaRepository<Dislike, Integer> {
 	
 	
 	//
-	@Query("SELECT count(*) FROM Subscription s where (s.userr.Id =:id)")
-	public int countSubscribers(@Param ("id") Long id);
-	
-	
+	@Query("SELECT d.nbrdislike FROM Dislike d where (d.user.Id =:id)")
+	public Integer getNbrDislikesOfPub(@Param ("id") Long id);
 
 }

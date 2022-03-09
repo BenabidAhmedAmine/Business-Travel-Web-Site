@@ -23,4 +23,6 @@ public 	List<Publication> findAllpublicationtri();
 //List<Publication> getPublicationByUser(Long Id);
 public 	List<Publication> retrieveallPUblicationstriee(String pub);
 public void	ajouterEtaffecterListePublication(Publication publication, Long  Id);
+
+public List<Publication> retrievePublicationByUser(Long id);
 }

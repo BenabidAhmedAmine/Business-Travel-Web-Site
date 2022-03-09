@@ -22,15 +22,14 @@ public interface PublicationRepository extends CrudRepository<Publication, Integ
 	//public List<Publication> findByContents(String contents);
 	//public Page<Publication> findByContents(String contents,Pageable pageable);
 	
-	
-	
-	
+	//List<Publication> findByUserSubscriptionsUserr(User u);
+	List<Publication> findByUser(User u);
 	@Query(value= "select * from publication  order by date_Pub desc",nativeQuery = true)
 	List<Publication> findAllpublicationtri();
 	@Query(value= "select count (p) from publication p where p.user=:user ",nativeQuery = true)
 	int getnbPublicationsByUser(@Param("user") User user);
-//	@Query(value="SELECT * FROM `publication` JOIN user u JOIN subscription s WHERE s.subscription.etat=:etat", nativeQuery = true)
-//	List<Publication> pubs(@Param("etat") Etat etat);
+@Query(value="SELECT DISTINCT * FROM publication p LEFT JOIN subscription s ON s.user_id=p.user_id;", nativeQuery = true)
+List<Publication> pubs(@Param("user_id") Long user_id);
 	
 	//@Query("select *  from publication p "
 		//	+ "join p.user u "

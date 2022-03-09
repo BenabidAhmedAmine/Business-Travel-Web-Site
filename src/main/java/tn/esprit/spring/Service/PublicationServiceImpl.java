@@ -1,5 +1,6 @@
 package tn.esprit.spring.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -9,16 +10,20 @@ import org.springframework.stereotype.Service;
 
 import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
 import tn.esprit.spring.Repository.PublicationRepository;
+import tn.esprit.spring.Repository.SubscriptionRepository;
 import tn.esprit.spring.Repository.UserRepository;
 
 import tn.esprit.spring.Entity.User;
 import tn.esprit.spring.Entity.Publication;
+import tn.esprit.spring.Entity.Subscription;
 
 @Service
 public class PublicationServiceImpl implements IPublicationService {
 
 	@Autowired
 	PublicationRepository publicationRepository;
+	@Autowired
+	SubscriptionRepository subscriptionRepository;
 	@Autowired
 	UserRepository userRepository;
 
@@ -114,5 +119,56 @@ public class PublicationServiceImpl implements IPublicationService {
 		publicationRepository.save(publication);
 	}
 
+	@Override
+	public List<Publication> retrievePublicationByUser(Long id){
+		User user = userRepository.findById(id).orElse(null);
+		System.out.println(user);
+		//return publicationRepository.findByUserSubscriptionsUserr(user);
+		 List<Publication> L1 =publicationRepository.findByUser(user);
+		// List<User> U =userRepository.findByUser(user);
+
+		 
+		 List<Subscription> S= subscriptionRepository.findByUserr(user);
+		 List<Publication> Final = new ArrayList<Publication>();
+	
+		 for(Publication P:L1){
+			 for(Subscription LS:S){
+				 if(P.getUser()==LS.getUserr() ){
+					 Final.add(P);
+				 }
+						
+			 }
+			 	 }
+		 return Final;
+	}
 
 }
+
+
+
+
+
+
+
+
+
+//User user = userRepository.findById(id).orElse(null);
+//System.out.println(user);
+//return publicationRepository.findByUserSubscriptionsUserr(user);
+ //List<Publication> L1 =publicationRepository.findByUser(user);
+ 
+ //List<Subscription> S= subscriptionRepository.findByUser(user);
+ 
+ //List<Publication> Final = new ArrayList<Publication>();
+ //for(Subscription LS:S){
+	 //for(Publication P:L1){
+	//	 if(P.getUser()==LS.getUserr()){
+			// Final.add(P);
+		// }
+				
+	 //}
+	// 	 }
+ //return Final;
+//}
+
+//}

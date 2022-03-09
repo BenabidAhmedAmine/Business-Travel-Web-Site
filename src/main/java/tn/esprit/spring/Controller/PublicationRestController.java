@@ -105,6 +105,11 @@ public class PublicationRestController {
 	//Optional<Publication> retrievePublication(String contents){
 	//return publicationService.retrievePublication(contents);
 	//}
+	@GetMapping("/retrieve-publication/{user_id}")
+		@ResponseBody
+		List<Publication> retrievePublicationByUserId(@PathVariable(value="user_id") Long user_id){
+		return pr.pubs(user_id);
+		}
 
 
 	
@@ -119,7 +124,11 @@ public class PublicationRestController {
 	
 
 }
-
+	@GetMapping("/retievePubByUser/{id}")
+	@ResponseBody
+	List<Publication> retrievePublicationByUser(@PathVariable Long id){
+		return publicationService.retrievePublicationByUser(id);
+	}
 
 	
 	

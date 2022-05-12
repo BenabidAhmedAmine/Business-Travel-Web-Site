@@ -1,0 +1,11 @@
+<ol>
+  <li>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter confirmation code</mat-label>
+      <input matInput [(ngModel)]="confirmationCode">
+    </mat-form-field>
+  </li>
+  <li>
+    <button mat-raised-button (click)="validateAccount()" >Confirm</button>
+  </li>
+</ol>
